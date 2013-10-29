@@ -34,6 +34,16 @@ public class UaaConfiguration {
 	@Pattern(regexp = "(default|postgresql|hsqldb|mysql|oracle)")
 	public String platform;
 	public String spring_profiles;
+	public String mbus;
+	public String pid;
+	public String jvm_args;
+	
+	@Valid
+	public Uaa uaa;
+	
+	@Valid
+	public Tags tags;
+	
 	@URL(message = "issuer.uri must be a valid URL")
 	public String issuerUri;
 	public boolean dump_requests;
@@ -58,7 +68,19 @@ public class UaaConfiguration {
 		@Valid
 		public Database database;
 	}
-
+	
+	public static class Uaa {
+		@NotNull(message = "Host url is required")
+		public String host;
+		@NotNull(message = "Port username is required")
+		public String port;
+		
+	}
+	public static class Tags {
+		@NotNull(message = "component url is required")
+		public String component;
+	}
+	
 	public static class Database {
 		public String driverClassName;
 		@NotNull(message = "Database url is required")
@@ -112,6 +134,8 @@ public class UaaConfiguration {
 		public String scope;
 		public String secret;
 		public String authorities;
+		public String resourceIds;
+		
 		@NotNull
 		public String grantTypes;
 		public String accessTokenValidity;
@@ -151,6 +175,7 @@ public class UaaConfiguration {
 			addPropertyAlias("verification-key", Jwt.Token.class, "verificationKey");
 			addPropertyAlias("authorized-grant-types", OAuthClient.class, "grantTypes");
 			addPropertyAlias("redirect-uri", OAuthClient.class, "redirectUri");
+			addPropertyAlias("resource-ids", OAuthClient.class, "resourceIds");
 			addPropertyAlias("access-token-validity", OAuthClient.class, "accessTokenValidity");
 			addPropertyAlias("refresh-token-validity", OAuthClient.class, "refreshTokenValidity");
 			addPropertyAlias("user.override", Scim.class, "userOverride");
@@ -170,11 +195,13 @@ public class UaaConfiguration {
 	}
 
 	public static void main(String[] args) throws Exception {
-		if (args.length != 1) {
-			throw new IllegalArgumentException("YAML file required");
-		}
+		//if (args.length != 1) {
+		//	throw new IllegalArgumentException("YAML file required");
+		//}
+		
+			String yml_path="C:\\Ruby192\\uaa\\config\\uaa.yml";
 		Yaml yaml = new Yaml(new UaaConfigConstructor());
-		BufferedReader br = new BufferedReader(new FileReader(args[0]));
+		BufferedReader br = new BufferedReader(new FileReader(yml_path));
 		UaaConfiguration config = (UaaConfiguration) yaml.load(br);
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
