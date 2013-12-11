@@ -293,8 +293,8 @@
 			<value>marissa|koala|marissa@test.org|Marissa|Bloggs|uaa.user</value>
 		</util:list>
 		<util:list id="defaultMembers">
-			<value>acme|acme.dev,acme.qa</value>
-			<value>acme.dev|marissa</value>
+			<value>acme|acme.dev,acme.qa</value> <!--初始化到group_membership表中，表示组acme下面有两个子组-->
+			<value>acme.dev|marissa</value><!--初始化到group_membership表中，表示组acme.dev下面有用户marissa -->
 		</util:list>
 		<bean id="defaultGroups" class="java.lang.String">
 			<constructor-arg value="acme,acme.dev,acme.qa,organizations.acme" />

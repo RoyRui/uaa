@@ -61,9 +61,9 @@
 		<constructor-arg ref="limitSqlAdapter"/>
 	</bean>
 
-	<jdbc:initialize-database ignore-failures="ALL" data-source="dataSource">
+	<!--<jdbc:initialize-database ignore-failures="ALL" data-source="dataSource">
 		<jdbc:script location="classpath*:org/cloudfoundry/identity/uaa/schema-#{@scripts}.sql" />
 		<jdbc:script location="classpath*:org/cloudfoundry/identity/uaa/scim/schema-#{@scripts}.sql" />
-	</jdbc:initialize-database>
+	</jdbc:initialize-database>-->
 
 </beans>

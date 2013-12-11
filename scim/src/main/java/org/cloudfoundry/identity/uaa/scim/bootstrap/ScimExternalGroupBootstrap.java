@@ -74,6 +74,10 @@ public class ScimExternalGroupBootstrap implements InitializingBean {
 	public void afterPropertiesSet() throws Exception {
 		for (Map<String, String> groupMap : externalGroupMap) {
 			Entry<String, String> entry = groupMap.entrySet().iterator().next();
+			System.out.println("====================");
+			System.out.println("===================="+entry.getKey()+"=============");
+			System.out.println("===================="+entry.getValue()+"=============");
+			System.out.println("====================");
 			addGroupMap(entry.getKey(), entry.getValue());
 		}
 	}

@@ -98,7 +98,7 @@
     </bean>
 
 	<authentication-manager id="clientAuthenticationManager" xmlns="http://www.springframework.org/schema/security">
-		<authentication-provider user-service-ref="clientDetailsUserService">
+		<authentication-provider user-service-ref="clientDetailsUserService"> <!--user-service-ref 此标签是必须的-->
 			<password-encoder ref="bcryptPasswordEncoder" />
 		</authentication-provider>
 	</authentication-manager>
