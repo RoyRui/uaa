@@ -35,6 +35,7 @@ public class UaaConfiguration {
 	public String platform;
 	public String spring_profiles;
 	public String mbus;
+	/***添加一行注释测试版本合并功能***/
 	public String pid;
 	public String jvm_args;
 	
